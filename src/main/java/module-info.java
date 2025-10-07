@@ -10,7 +10,12 @@ module com.example.infinity {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires static lombok;
 
     opens com.example.infinity to javafx.fxml;
     exports com.example.infinity;
+    exports com.example.infinity.controller;
+    opens com.example.infinity.controller to javafx.fxml;
+    exports com.example.infinity.application;
+    opens com.example.infinity.application to javafx.fxml;
 }
