@@ -15,6 +15,7 @@ module com.example.infinity {
     requires javafx.media;
     requires annotations;
     requires java.logging;
+    requires org.yaml.snakeyaml;
 
     opens com.example.infinity to javafx.fxml;
     exports com.example.infinity;
