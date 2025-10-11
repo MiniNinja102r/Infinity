@@ -11,6 +11,10 @@ module com.example.infinity {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires static lombok;
+    requires java.desktop;
+    requires javafx.media;
+    requires annotations;
+    requires java.logging;
 
     opens com.example.infinity to javafx.fxml;
     exports com.example.infinity;
