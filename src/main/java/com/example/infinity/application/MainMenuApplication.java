@@ -30,7 +30,7 @@ public final class MainMenuApplication extends Application {
 
     private void launchMusic() {
         musicPlayer = MusicPlayer.getInstance();
-        musicPlayer.playLoop();
+        musicPlayer.playMainMenuMusic();
     }
 
     @Override

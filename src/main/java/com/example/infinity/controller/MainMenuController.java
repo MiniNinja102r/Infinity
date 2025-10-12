@@ -5,7 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import lombok.extern.java.Log;
 
+@Log
 public class MainMenuController {
 
     @FXML
@@ -22,16 +24,19 @@ public class MainMenuController {
 
     @FXML
     void onResearchClick(ActionEvent event) {
+        log.info("Нажата кнопка: исследования");
         // TODO: загрузка исследований
     }
 
     @FXML
     void onPlayClick(ActionEvent event) {
+        log.info("Нажата кнопка: старт");
         // TODO: запуск игры
     }
 
     @FXML
     void onSettingsClick(ActionEvent event) {
+        log.info("Нажата кнопка: настройки");
         // TODO: загрузка настроек
     }
 
