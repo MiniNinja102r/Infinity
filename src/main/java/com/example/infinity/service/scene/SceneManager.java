@@ -1,6 +1,7 @@
 package com.example.infinity.service.scene;
 
 import com.example.infinity.storage.Config;
+import com.example.infinity.util.InfinityConstants;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
 
-@Log
+@Log //todo: fix a window sizes
 public final class SceneManager {
     private static SceneManager instance;
     private final Stage stage;
@@ -21,7 +22,8 @@ public final class SceneManager {
     // Подавление создания стандартного конструктора.
     private SceneManager(Stage stage) {
         this.stage = stage;
-        this.stage.setResizable(false);
+        this.stage.setMaximized(true);
+        this.stage.setTitle(InfinityConstants.INFINITY_GAME_NAME);
     }
 
     public static void initialize(@NotNull Stage stage) {
@@ -51,6 +53,8 @@ public final class SceneManager {
             if (scene == null)
                 throw new NullPointerException(String.format("Error, scene %s could not be loaded", type));
             stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.setMaximized(true);
         } catch (Exception e) {
             log.severe(String.format("Failed to switch scene to $1%s: $2%s", type, e.getMessage()));
         }

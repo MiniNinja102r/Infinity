@@ -3,7 +3,6 @@ package com.example.infinity.application;
 import com.example.infinity.service.scene.SceneManager;
 import com.example.infinity.service.scene.SceneType;
 import com.example.infinity.storage.Config;
-import com.example.infinity.util.InfinityConstants;
 import com.example.infinity.service.audio.MusicPlayer;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -18,8 +17,6 @@ public final class MainMenuApplication extends Application {
         Config.load();
         SceneManager.initialize(stage);
         SceneManager.getInstance().switchScene(SceneType.MAIN_MENU);
-        stage.setTitle(InfinityConstants.INFINITY_GAME_NAME);
-        stage.setMaximized(true);
         stage.show();
 
         launchMusic();
