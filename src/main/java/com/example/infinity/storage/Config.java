@@ -5,6 +5,8 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Log
@@ -47,6 +49,13 @@ public final class Config {
             log.severe("Audio section not found in config");
         else {
             Audio.MAX_RETRY_COUNTS = (int) audio.get("max_retry_counts");
+
+            final List<String> sounds = (List<String>) audio.get("main_menu_sounds_names");
+            if (sounds == null || sounds.isEmpty()) {
+                log.severe("Main Menu sounds is empty or null");
+                Audio.MAIN_MENU_SOUNDS_NAMES = List.of(); // Пустой список музыки по умолчанию.
+            } else
+                Audio.MAIN_MENU_SOUNDS_NAMES = new ArrayList<>(sounds);
         }
     }
 
@@ -67,5 +76,6 @@ public final class Config {
         private Audio() {}
 
         public static int MAX_RETRY_COUNTS;
+        public static List<String> MAIN_MENU_SOUNDS_NAMES = new ArrayList<>();
     }
 }

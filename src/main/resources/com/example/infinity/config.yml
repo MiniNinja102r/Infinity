@@ -6,3 +6,5 @@ resource:
 
 audio:
   max_retry_counts: 3
+  main_menu_sounds_names:
+    - "MainTheme-1.mp3"

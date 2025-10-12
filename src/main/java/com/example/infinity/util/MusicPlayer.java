@@ -9,15 +9,10 @@ import lombok.extern.java.Log;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Log
 public final class MusicPlayer {
-    private static final List<String> MAIN_MENU_SOUNDS_NAMES = List.of(
-            "MainTheme-1.mp3"
-    );
-
     private static MusicPlayer instance;
     private MediaPlayer mediaPlayer;
 
@@ -32,10 +27,18 @@ public final class MusicPlayer {
     }
 
     public void playMainMenuMusic() {
-        final int fileIndex = ThreadLocalRandom.current().nextInt(MAIN_MENU_SOUNDS_NAMES.size());
-        String audioFileName = MAIN_MENU_SOUNDS_NAMES.get(fileIndex);
-        playAudioInternal(audioFileName, false);
-        mediaPlayer.setOnEndOfMedia(this::playMainMenuMusic);
+        try {
+            if (Config.Audio.MAIN_MENU_SOUNDS_NAMES.isEmpty()) {
+                throw new MusicPlayerException("Main menu sounds is empty");
+            }
+
+            final int fileIndex = ThreadLocalRandom.current().nextInt(Config.Audio.MAIN_MENU_SOUNDS_NAMES.size());
+            String audioFileName = Config.Audio.MAIN_MENU_SOUNDS_NAMES.get(fileIndex);
+            playAudioInternal(audioFileName, false);
+            mediaPlayer.setOnEndOfMedia(this::playMainMenuMusic);
+        } catch (Exception e) {
+            log.severe("Error, can't launch main menu sounds: " + e.getMessage());
+        }
     }
 
     public void playAudio(String audioFileName) {
