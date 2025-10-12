@@ -1,7 +1,7 @@
 package com.example.infinity.service;
 
 import com.example.infinity.storage.Config;
-import com.example.infinity.util.MusicPlayer;
+import com.example.infinity.service.audio.MusicPlayer;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
@@ -28,10 +28,10 @@ public final class SettingsService {
 
     public void setMusicVolume(double newVolume) {
         if (newVolume < 0 || newVolume > 1) {
-            throw new IllegalArgumentException("Music volume can be from 0 to 1");
+            throw new IllegalArgumentException("Audio volume can be from 0 to 1");
         }
 
         musicVolume = newVolume;
-        musicPlayer.setMusicVolume(musicVolume);
+        musicPlayer.setVolume(musicVolume);
     }
 }

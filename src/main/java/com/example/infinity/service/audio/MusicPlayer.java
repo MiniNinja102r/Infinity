@@ -1,18 +1,16 @@
-package com.example.infinity.util;
+package com.example.infinity.service.audio;
 
 import com.example.infinity.exception.MusicPlayerException;
 import com.example.infinity.storage.Config;
 import javafx.application.Platform;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import lombok.extern.java.Log;
 import org.jetbrains.annotations.NotNull;
 
-import java.net.URL;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Log
-public final class MusicPlayer {
+public final class MusicPlayer extends AbstractAudioPlayer {
     private static MusicPlayer instance;
     private MediaPlayer mediaPlayer;
 
@@ -34,48 +32,25 @@ public final class MusicPlayer {
 
             final int fileIndex = ThreadLocalRandom.current().nextInt(Config.Audio.MAIN_MENU_SOUNDS_NAMES.size());
             String audioFileName = Config.Audio.MAIN_MENU_SOUNDS_NAMES.get(fileIndex);
-            playAudioInternal(audioFileName, false);
+            play(audioFileName, false);
             mediaPlayer.setOnEndOfMedia(this::playMainMenuMusic);
         } catch (Exception e) {
             log.severe("Error, can't launch main menu sounds: " + e.getMessage());
         }
     }
 
-    public void playAudio(String audioFileName) {
-        playAudioInternal(audioFileName, false);
+    @Override
+    protected void onPlayError(Exception e) {
+        log.severe("Error with playing audio: " + e.getMessage());
+        attemptToPlayMainMenuMusic();
     }
 
-    public void playAudioLoop(String audioFileName) {
-        playAudioInternal(audioFileName, true);
+    public void playMusic(String audioFileName) {
+        play(audioFileName, false);
     }
 
-    public void setMusicVolume(double value) {
-        if (mediaPlayer != null)
-            mediaPlayer.setVolume(value);
-    }
-
-    private void playAudioInternal(String audioFileName, boolean isLoop) throws MusicPlayerException {
-        try {
-            if (audioFileName == null || audioFileName.isEmpty()) {
-                throw new MusicPlayerException("AudioFile is empty or null");
-            }
-
-            URL audio = getClass().getResource(Config.Resource.AUDIO_PATH + audioFileName);
-            if (audio == null) {
-                throw new MusicPlayerException("Audio file not found: " + audioFileName);
-            }
-
-            stop();
-
-            final Media media = new Media(audio.toExternalForm());
-            mediaPlayer = new MediaPlayer(media);
-            if (isLoop)
-                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.play();
-        } catch (Exception e) {
-            log.severe("Error with playing audio: " + e.getMessage());
-            attemptToPlayMainMenuMusic();
-        }
+    public void playMusicLoop(String audioFileName) {
+        play(audioFileName, true);
     }
 
     private int retryCount = 0;

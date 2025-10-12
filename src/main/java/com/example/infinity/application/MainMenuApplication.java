@@ -4,7 +4,7 @@ import com.example.infinity.service.scene.SceneManager;
 import com.example.infinity.service.scene.SceneType;
 import com.example.infinity.storage.Config;
 import com.example.infinity.util.InfinityConstants;
-import com.example.infinity.util.MusicPlayer;
+import com.example.infinity.service.audio.MusicPlayer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import lombok.Getter;
