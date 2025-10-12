@@ -8,3 +8,7 @@ audio:
   max_retry_counts: 3
   main_menu_sounds_names:
     - "MainTheme-1.mp3"
+
+settings:
+  default_music_enabled: true
+  default_music_volume: 0.5 # 0 - 1.0;

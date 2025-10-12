@@ -59,6 +59,16 @@ public final class Config {
         }
     }
 
+    private static void loadSettings() {
+        Map<String, Object> settings = (Map<String, Object>) data.get("settings");
+        if (settings == null)
+            log.severe("Settings section not found in config");
+        else {
+            Settings.DEFAULT_MUSIC_ENABLED = (boolean) settings.get("default_music_enabled");
+            Settings.DEFAULT_MUSIC_VOLUME = (double) settings.get("default_music_volume");
+        }
+    }
+
     public static class Resource {
 
         // Подавление создания стандартного конструктора.
@@ -77,5 +87,14 @@ public final class Config {
 
         public static int MAX_RETRY_COUNTS;
         public static List<String> MAIN_MENU_SOUNDS_NAMES = new ArrayList<>();
+    }
+
+    public static class Settings {
+
+        // Подавление создания стандартного конструктора.
+        private Settings() {}
+
+        public static boolean DEFAULT_MUSIC_ENABLED;
+        public static double DEFAULT_MUSIC_VOLUME;
     }
 }
