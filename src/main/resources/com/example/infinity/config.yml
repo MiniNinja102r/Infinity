@@ -1,0 +1,5 @@
+resource:
+  path: "/com/example/infinity/"
+  fxml: "/com/example/infinity/fxml/"
+  image: "/com/example/infinity/icons/"
+  audio: "/com/example/infinity/audio/"
