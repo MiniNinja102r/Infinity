@@ -23,6 +23,7 @@ public final class Config {
             final Yaml yaml = new Yaml();
             data = yaml.load(input);
             loadResources();
+            loadAudio();
         } catch (IOException e) {
             log.severe("Error reading resource configuration: " + e);
         }
@@ -31,12 +32,21 @@ public final class Config {
     private static void loadResources() {
         Map<String, Object> resource = (Map<String, Object>) data.get("resource");
         if (resource == null)
-            log.warning("Resource section not found in config");
+            log.severe("Resource section not found in config");
         else {
             Resource.PATH = (String) resource.get("path");
             Resource.FXML_PATH = (String) resource.get("fxml");
             Resource.IMG_PATH = (String) resource.get("image");
             Resource.AUDIO_PATH = (String) resource.get("audio");
+        }
+    }
+
+    private static void loadAudio() {
+        Map<String, Object> audio = (Map<String, Object>) data.get("audio");
+        if (audio == null)
+            log.severe("Audio section not found in config");
+        else {
+            Audio.MAX_RETRY_COUNTS = (int) audio.get("max_retry_counts");
         }
     }
 
@@ -49,5 +59,13 @@ public final class Config {
         public static String FXML_PATH;
         public static String IMG_PATH;
         public static String AUDIO_PATH;
+    }
+
+    public static class Audio {
+
+        // Подавление создания стандартного конструктора.
+        private Audio() {}
+
+        public static int MAX_RETRY_COUNTS;
     }
 }

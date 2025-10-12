@@ -3,3 +3,6 @@ resource:
   fxml: "/com/example/infinity/fxml/"
   image: "/com/example/infinity/icons/"
   audio: "/com/example/infinity/audio/"
+
+audio:
+  max_retry_counts: 3

@@ -17,7 +17,6 @@ public final class MusicPlayer {
     private static final List<String> MAIN_MENU_SOUNDS_NAMES = List.of(
             "MainTheme-1.mp3"
     );
-    private static final int MAX_RETRIES = 3;
 
     private static MusicPlayer instance;
     private MediaPlayer mediaPlayer;
@@ -73,8 +72,8 @@ public final class MusicPlayer {
 
     private int retryCount = 0;
     private void attemptToPlayMainMenuMusic() {
-        if (retryCount++ < MAX_RETRIES) {
-            log.warning(String.format("Retrying to play main menu music ($1%d / $2%d)", retryCount, MAX_RETRIES));
+        if (retryCount++ < Config.Audio.MAX_RETRY_COUNTS) {
+            log.warning(String.format("Retrying to play main menu music ($1%d / $2%d)", retryCount, Config.Audio.MAX_RETRY_COUNTS));
             Platform.runLater(this::playMainMenuMusic);
         } else
             log.severe("Max retry attempts reached. Music playback stopped");
