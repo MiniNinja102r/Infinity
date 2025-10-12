@@ -26,6 +26,7 @@ public final class Config {
             data = yaml.load(input);
             loadResources();
             loadAudio();
+            loadSettings();
         } catch (IOException e) {
             log.severe("Error reading resource configuration: " + e);
         }

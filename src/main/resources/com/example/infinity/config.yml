@@ -11,4 +11,4 @@ audio:
 
 settings:
   default_music_enabled: true
-  default_music_volume: 0.5 # 0 - 1.0;
+  default_music_volume: 0.75 # 0 - 1.0;

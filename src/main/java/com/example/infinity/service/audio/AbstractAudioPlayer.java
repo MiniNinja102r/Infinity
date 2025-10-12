@@ -48,5 +48,9 @@ public abstract class AbstractAudioPlayer {
         mediaPlayer.setVolume(volume);
     }
 
+    public void setMute(boolean isMute) {
+        mediaPlayer.setMute(!isMute);
+    }
+
     protected abstract void onPlayError(Exception e);
 }

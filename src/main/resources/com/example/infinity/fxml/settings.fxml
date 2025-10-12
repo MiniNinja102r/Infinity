@@ -20,7 +20,7 @@
 
     <HBox spacing="10" alignment="CENTER_LEFT">
         <Label text="Громкость:"/>
-        <Slider fx:id="volumeSlider" min="0" max="1" blockIncrement="0.05" prefWidth="200"/>
+        <Slider fx:id="musicVolumeSlider" min="0" max="1" blockIncrement="0.05" prefWidth="200"/>
         <Label fx:id="volumeLabel" text="50%" minWidth="40" alignment="CENTER_RIGHT"/>
     </HBox>
 

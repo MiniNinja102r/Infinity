@@ -62,6 +62,7 @@ public final class MusicPlayer extends AbstractAudioPlayer {
             log.severe("Max retry attempts reached. Music playback stopped");
     }
 
+    @Override
     public void stop() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();

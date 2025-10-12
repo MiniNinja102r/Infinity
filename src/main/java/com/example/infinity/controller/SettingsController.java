@@ -1,20 +1,22 @@
 package com.example.infinity.controller;
 
 import com.example.infinity.service.SettingsService;
+import com.example.infinity.service.scene.SceneManager;
+import com.example.infinity.service.scene.SceneType;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 
 public final class SettingsController {
-
     private final SettingsService settings = SettingsService.getInstance();
+    private final SceneManager sceneManager = SceneManager.getInstance();
 
     @FXML
     private CheckBox musicCheckBox;
 
     @FXML
-    private Slider volumeSlider;
+    private Slider musicVolumeSlider;
 
     @FXML
     private Label volumeLabel;
@@ -22,12 +24,11 @@ public final class SettingsController {
     @FXML
     public void initialize() {
         musicCheckBox.setSelected(settings.isMusicEnabled());
-        volumeSlider.setValue(settings.getMusicVolume());
-
-        updateVolumeLabel(volumeSlider.getValue());
+        musicVolumeSlider.setValue(settings.getMusicVolume());
+        musicVolumeSlider.valueProperty().setValue(settings.getMusicVolume());
 
         // Обновление label при движении слайдера
-        volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+        musicVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             updateVolumeLabel(newVal.doubleValue());
         });
     }
@@ -40,9 +41,8 @@ public final class SettingsController {
     @FXML
     private void onSaveClicked() {
         settings.setMusicEnabled(musicCheckBox.isSelected());
-        settings.setMusicVolume(volumeSlider.getValue());
+        settings.setMusicVolume(musicVolumeSlider.getValue());
 
-        //Stage stage = (Stage) musicCheckBox.getScene().getWindow();
-        //stage.close();
+        sceneManager.switchScene(SceneType.MAIN_MENU);
     }
 }

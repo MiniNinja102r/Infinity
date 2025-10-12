@@ -3,14 +3,13 @@ package com.example.infinity.service;
 import com.example.infinity.storage.Config;
 import com.example.infinity.service.audio.MusicPlayer;
 import lombok.Getter;
-import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 public final class SettingsService {
     private static SettingsService instance;
     private static MusicPlayer musicPlayer = MusicPlayer.getInstance();
 
-    @Getter @Setter
+    @Getter
     private boolean isMusicEnabled = Config.Settings.DEFAULT_MUSIC_ENABLED;
 
     @Getter
@@ -24,6 +23,13 @@ public final class SettingsService {
         if (instance == null)
             instance = new SettingsService();
         return instance;
+    }
+
+    public void setMusicEnabled(boolean status) {
+        if (isMusicEnabled == status)
+            return;
+        isMusicEnabled = status;
+        musicPlayer.setMute(isMusicEnabled);
     }
 
     public void setMusicVolume(double newVolume) {
