@@ -2,19 +2,12 @@ package com.example.infinity.controller;
 
 import com.example.infinity.service.scene.SceneManager;
 import com.example.infinity.service.scene.SceneType;
-import com.example.infinity.storage.Config;
 import com.example.infinity.util.InfinityConstants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import lombok.extern.java.Log;
-
-import java.io.IOException;
 
 @Log
 public final class MainMenuController {
@@ -56,6 +49,6 @@ public final class MainMenuController {
 
         //playButton.setOnAction(e -> sceneManager.switchScene(SceneType.GAME));
         //researchButton.setOnAction(e -> sceneManager.switchScene(SceneType.RESEARCH));
-//        settingsButton.setOnAction(e -> sceneManager.switchScene(SceneType.SETTINGS));
+        //settingsButton.setOnAction(e -> sceneManager.switchScene(SceneType.SETTINGS));
     }
 }

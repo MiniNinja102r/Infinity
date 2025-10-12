@@ -49,6 +49,11 @@ public final class MusicPlayer {
         playAudioInternal(audioFileName, true);
     }
 
+    public void setMusicVolume(double value) {
+        if (mediaPlayer != null)
+            mediaPlayer.setVolume(value);
+    }
+
     private void playAudioInternal(String audioFileName, boolean isLoop) throws MusicPlayerException {
         try {
             if (audioFileName == null || audioFileName.isEmpty()) {
