@@ -2,18 +2,19 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 
-<VBox alignment="CENTER" spacing="15" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.infinity.controller.MainMenuController">
-    <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
-    </padding>
-
-    <Label fx:id="welcomeText" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-
-    <Button fx:id="researchButton" text="Исследования" onAction="#onResearchClick" prefWidth="200" prefHeight="40"/>
-    <Button fx:id="playButton" text="Играть" onAction="#onPlayClick" prefWidth="200" prefHeight="40"/>
-    <Button fx:id="settingsButton" text="Настройки" onAction="#onSettingsClick" prefWidth="200" prefHeight="40"/>
-</VBox>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.infinity.controller.MainMenuController">
+   <children>
+      <Button fx:id="exitButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#onExitClick" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 10;" text="Exit" />
+      <Label fx:id="welcomeText" layoutX="299.0" layoutY="165.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+      <Button fx:id="researchButton" layoutX="14.0" layoutY="301.0" onAction="#onResearchClick" prefHeight="85.0" prefWidth="130.0" style="-fx-background-radius: 10;" text="Исследования" />
+      <Button fx:id="mapSelectButton" layoutX="401.0" layoutY="330.0" onAction="#onMapSelectClick" prefHeight="56.0" prefWidth="185.0" style="-fx-background-radius: 10;" text="Выбор карты" />
+      <Button fx:id="settingsButton" layoutX="531.0" layoutY="10.0" onAction="#onSettingsClick"
+               prefHeight="55.0" prefWidth="55.0" style="-fx-background-image: url('/com/example/infinity/icons/settings-button.png'); -fx-background-radius: 10;" />
+      <Button fx:id="continuePlayButton" disable="true" layoutX="329.0" layoutY="330.0" mnemonicParsing="false" onAction="#onContinuePlayClick" prefHeight="56.0" prefWidth="60.0" style="-fx-background-radius: 10;" text="Play" />
+      <Button fx:id="musicPlayerButton" layoutX="389.0" layoutY="10.0" mnemonicParsing="false" onAction="#onMusicPlayerClick" prefHeight="55.0" prefWidth="130.0" style="-fx-background-radius: 10;" text="Плеер" />
+   </children>
+</Pane>
