@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
 
-@Log //todo: fix a window sizes
+@Log
 public final class SceneManager {
     private static SceneManager instance;
     private final Stage stage;
@@ -22,7 +22,7 @@ public final class SceneManager {
     // Подавление создания стандартного конструктора.
     private SceneManager(Stage stage) {
         this.stage = stage;
-        this.stage.setMaximized(true);
+        this.stage.setResizable(false);
         this.stage.setTitle(InfinityConstants.INFINITY_GAME_NAME);
     }
 
@@ -54,7 +54,6 @@ public final class SceneManager {
                 throw new NullPointerException(String.format("Error, scene %s could not be loaded", type));
             stage.setScene(scene);
             stage.centerOnScreen();
-            stage.setMaximized(true);
         } catch (Exception e) {
             log.severe(String.format("Failed to switch scene to $1%s: $2%s", type, e.getMessage()));
         }
@@ -64,6 +63,6 @@ public final class SceneManager {
         final String path = Config.Resource.FXML_PATH + type.getFxmlFile();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         Parent root = loader.load();
-        return new Scene(root);
+        return new Scene(root, InfinityConstants.GAME_WIDTH, InfinityConstants.GAME_HEIGHT);
     }
 }

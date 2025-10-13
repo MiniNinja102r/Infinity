@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.example"
-version = "1.0-SNAPSHOT"
+version = "0.1.3"
 
 repositories {
     mavenCentral()
@@ -27,7 +27,7 @@ tasks.withType<JavaCompile> {
 
 application {
     mainModule.set("com.example.infinity")
-    mainClass.set("com.example.infinity.HelloApplication")
+    mainClass.set("com.example.infinity.application.MainMenuApplication")
 }
 
 javafx {
