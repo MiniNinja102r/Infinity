@@ -1,5 +1,6 @@
 package com.example.infinity.service.scene;
 
+import com.example.infinity.service.WindowManager;
 import com.example.infinity.storage.Config;
 import com.example.infinity.util.InfinityConstants;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +18,15 @@ import java.util.Map;
 public final class SceneManager {
     private static SceneManager instance;
     private final Stage stage;
+    private final WindowManager windowManager = WindowManager.getInstance();
     private final Map<SceneType, Scene> sceneCache = new EnumMap<>(SceneType.class);
 
     // Подавление создания стандартного конструктора.
     private SceneManager(Stage stage) {
         this.stage = stage;
-        this.stage.setResizable(false);
         this.stage.setTitle(InfinityConstants.INFINITY_GAME_NAME);
+        this.stage.setMinWidth(InfinityConstants.GAME_WIDTH);
+        this.stage.setMinHeight(InfinityConstants.GAME_HEIGHT);
     }
 
     public static void initialize(@NotNull Stage stage) {
@@ -54,6 +57,7 @@ public final class SceneManager {
                 throw new NullPointerException(String.format("Error, scene %s could not be loaded", type));
             stage.setScene(scene);
             stage.centerOnScreen();
+            windowManager.initScaleListeners(type, scene);
         } catch (Exception e) {
             log.severe(String.format("Failed to switch scene to $1%s: $2%s", type, e.getMessage()));
         }
